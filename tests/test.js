@@ -88,7 +88,7 @@ describe("users", () => {
   });
 });
 
-describe("channels", () => {
+xdescribe("channels", () => {
   describe("#create", () => {
     const params = { name: "" };
 
@@ -145,7 +145,7 @@ describe("channels", () => {
   });
 });
 
-describe("channel_messages", () => {
+xdescribe("channel_messages", () => {
   let fromId;
   let channelId;
   let otherChannelId;
@@ -174,7 +174,7 @@ describe("channel_messages", () => {
       .then(() => knex("users").del())
   );
 
-  describe("#create", () => {
+  xdescribe("#create", () => {
     after(() => knex("channel_messages").del());
 
     it("creates a message", () =>
@@ -191,7 +191,7 @@ describe("channel_messages", () => {
         }));
   });
 
-  describe("#list", () => {
+  xdescribe("#list", () => {
     before(() =>
       knex("channel_messages")
         .insert([
@@ -240,7 +240,7 @@ describe("channel_messages", () => {
   });
 });
 
-describe("user_messages", () => {
+xdescribe("user_messages", () => {
   let fromId;
   let toId;
   let otherToId;
