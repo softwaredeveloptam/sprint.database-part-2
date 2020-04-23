@@ -147,7 +147,7 @@ describe("channels", () => {
   });
 });
 
-xdescribe("channel_messages", () => {
+describe("channel_messages", () => {
   let fromId;
   let channelId;
   let otherChannelId;
@@ -176,29 +176,31 @@ xdescribe("channel_messages", () => {
       .then(() => knex("users").del())
   );
 
-  xdescribe("#create", () => {
+  describe("#create", () => {
     after(() => knex("channel_messages").del());
 
-    it("creates a message", () =>
+    it("creates a message", () => {
       models.channelMessages
         .create({ fromId, channelId, message })
         .then((messages) => {
           expect(messages[0]).to.include({
-            fromUser: "rp-3",
-            toChannel: "general",
+            from: "rp-3",
+            to: "general",
             message,
           });
           expect(messages[0].id).to.be.a("number");
-          expect(messages[0].sentAt).to.be.a("Date");
-        }));
+
+          expect(messages[0].sent_at).to.be.a("Date");
+        });
+    });
   });
 
-  xdescribe("#list", () => {
+  describe("#list", () => {
     before(() =>
       knex("channel_messages")
         .insert([
-          { from_id: fromId, channel_id: channelId, message },
-          { from_id: fromId, channel_id: otherChannelId, message },
+          { from: fromId, to: channelId, message },
+          { from: fromId, to: otherChannelId, message },
         ])
         .then(
           () =>
@@ -210,8 +212,8 @@ xdescribe("channel_messages", () => {
         )
         .then(() =>
           knex("channel_messages").insert({
-            from_id: fromId,
-            channel_id: channelId,
+            from: fromId,
+            to: channelId,
             message: "booya!",
           })
         )
@@ -227,8 +229,8 @@ xdescribe("channel_messages", () => {
     it("lists the right messages", () =>
       models.channelMessages.list({ channelId }).then((messages) => {
         expect(messages[0]).to.include({
-          fromUser: "rp-3",
-          toChannel: "general",
+          from: "rp-3",
+          to: "general",
           message,
         });
         expect(messages[0].id).to.be.a("number");
