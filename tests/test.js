@@ -88,7 +88,7 @@ describe("users", () => {
   });
 });
 
-xdescribe("channels", () => {
+describe("channels", () => {
   describe("#create", () => {
     const params = { name: "" };
 
