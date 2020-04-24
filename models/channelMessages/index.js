@@ -2,8 +2,8 @@ const moment = require("moment");
 
 const ChannelMessage = function(dbChannelMessage) {
   this.id = dbChannelMessage.id;
-  this.fromUser = dbChannelMessage.from;
-  this.toChannel = dbChannelMessage.to;
+  this.from = dbChannelMessage.from;
+  this.to = dbChannelMessage.to;
   this.message = dbChannelMessage.message;
   this.sentAt = new Date(dbChannelMessage.sent_at);
 };
@@ -11,8 +11,8 @@ const ChannelMessage = function(dbChannelMessage) {
 ChannelMessage.prototype.serialize = function() {
   return {
     id: this.id,
-    fromUser: this.fromUser,
-    toChannel: this.toChannel,
+    from: this.fromUser,
+    to: this.toChannel,
     message: this.message,
     sentAt: moment(this.sentAt).fromNow(),
   };

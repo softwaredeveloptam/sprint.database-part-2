@@ -162,10 +162,12 @@ describe("channel_messages", () => {
       })
       .then((channel) => {
         channelId = channel.id;
+        console.log("channelId:", channelId);
         return models.channels.create({ name: "random" });
       })
       .then((channel) => {
         otherChannelId = channel.id;
+        console.log("otherChannelId:", otherChannelId);
         knex("channel_messages").del();
       })
   );
@@ -206,8 +208,11 @@ describe("channel_messages", () => {
           () =>
             new Promise((res) =>
               setTimeout(() => {
+                console.log("channelId:", channelId);
+                console.log("otherChannelId:", otherChannelId);
+                console.log("res:", res);
                 res();
-              }, 500)
+              }, 50)
             )
         )
         .then(() =>
@@ -238,6 +243,7 @@ describe("channel_messages", () => {
 
     it("lists message in the right order", () =>
       models.channelMessages.list({ channelId }).then((messages) => {
+        console.log("messages:", messages);
         expect(messages[0].message).to.equal(message);
         expect(messages[1].message).to.equal("booya!");
       }));

@@ -1,6 +1,6 @@
 module.exports = (knex, ChannelMessage) => {
   return (params) => {
-    console.log("params:", params);
+    console.log("params in create:", params);
     const fromId = params.fromId;
     const channelId = params.channelId;
     const message = params.message;
