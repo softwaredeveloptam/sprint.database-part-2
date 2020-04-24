@@ -2,7 +2,7 @@ const moment = require("moment");
 
 const UserMessage = function(dbMessage) {
   this.id = dbMessage.id;
-  this.fromUser = dbMessage.from;
+  this.fromUser = dbMessage.fromUser;
   this.message = dbMessage.message;
   this.sentAt = new Date(dbMessage.sent_at);
 };

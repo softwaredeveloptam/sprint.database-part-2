@@ -1,8 +1,10 @@
 module.exports = (knex, ChannelMessage) => {
   return async (params) => {
-    console.log("params in list:", params);
+    // console.log("params in list:", params);
     const channel = params.channelId;
-    const allChannelsMessages = await knex
+    // console.log("channel:", channel);
+
+    const allChannelsMessages = await knex("channel_messages")
       .select(
         "channel_messages.id",
         "message",
@@ -16,6 +18,7 @@ module.exports = (knex, ChannelMessage) => {
 
     const result = [];
 
+    // console.log("allChannelsMessages:", allChannelsMessages);
     allChannelsMessages.forEach((msg) => {
       result.push(new ChannelMessage(msg));
     });
@@ -26,7 +29,7 @@ module.exports = (knex, ChannelMessage) => {
    INNER JOIN users ON channel_messages.from = users.id;
     */
 
-    console.log("result:", result);
+    // console.log("result:", result);
     return result;
   };
 };

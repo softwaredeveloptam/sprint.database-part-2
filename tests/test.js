@@ -147,7 +147,7 @@ describe("channels", () => {
   });
 });
 
-describe("channel_messages", () => {
+xdescribe("channel_messages", () => {
   let fromId;
   let channelId;
   let otherChannelId;
@@ -167,7 +167,7 @@ describe("channel_messages", () => {
       })
       .then((channel) => {
         otherChannelId = channel.id;
-        console.log("otherChannelId:", otherChannelId);
+        // console.log("otherChannelId:", otherChannelId);
         knex("channel_messages").del();
       })
   );
@@ -208,11 +208,10 @@ describe("channel_messages", () => {
           () =>
             new Promise((res) =>
               setTimeout(() => {
-                console.log("channelId:", channelId);
-                console.log("otherChannelId:", otherChannelId);
-                console.log("res:", res);
+                // console.log("channelId:", channelId);
+                // console.log("otherChannelId:", otherChannelId);
                 res();
-              }, 50)
+              }, 500)
             )
         )
         .then(() =>
@@ -243,14 +242,14 @@ describe("channel_messages", () => {
 
     it("lists message in the right order", () =>
       models.channelMessages.list({ channelId }).then((messages) => {
-        console.log("messages:", messages);
+        // console.log("messages:", messages);
         expect(messages[0].message).to.equal(message);
         expect(messages[1].message).to.equal("booya!");
       }));
   });
 });
 
-xdescribe("user_messages", () => {
+describe("user_messages", () => {
   let fromId;
   let toId;
   let otherToId;
