@@ -29,7 +29,7 @@
     "eslint-config-problems": "^1.1.0",
     "eslint-plugin-prettier": "^3.0.0",
     "husky": "^1.1.2",
-    "mocha": "^5.2.0",
+    "mocha": "^10.2.0",
     "prettier": "^1.12.1",
     "pretty-quick": "^1.4.1",
     "sqlite3": "^4.0.9"
